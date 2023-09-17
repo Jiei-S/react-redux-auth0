@@ -1,8 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createProject, findProject } from "./api";
-import { Project } from "../../pages/projects/index";
+import { createSlice } from "@reduxjs/toolkit";
+import { createProject, findProject, getProjects } from "./api";
 
-export const PROJECT_SLICE_KEY = "projects";
+export enum ProjectSliceName {
+  project = "project",
+  projects = "projects",
+}
 
 export enum ProjectStateStatus {
   idle,
@@ -22,7 +24,7 @@ type ProjectState = {
   status: ProjectStateStatus;
 };
 
-const initialState: ProjectState = {
+const initialProject: ProjectState = {
   project: {
     id: "",
     name: "",
@@ -32,13 +34,9 @@ const initialState: ProjectState = {
 };
 
 const projectSlice = createSlice({
-  name: PROJECT_SLICE_KEY,
-  initialState,
-  reducers: {
-    setProject: (state, action: PayloadAction<Project>) => {
-      state.project = action.payload;
-    },
-  },
+  name: ProjectSliceName.project,
+  initialState: initialProject,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(findProject.pending, (state) => {
@@ -64,6 +62,35 @@ const projectSlice = createSlice({
   },
 });
 
-export const { setProject } = projectSlice.actions;
-
 export const projectReducer = projectSlice.reducer;
+
+type ProjectsState = {
+  projects: Project[];
+  status: ProjectStateStatus;
+};
+
+const initialProjects: ProjectsState = {
+  projects: [],
+  status: ProjectStateStatus.idle,
+};
+
+const projectsSlice = createSlice({
+  name: ProjectSliceName.projects,
+  initialState: initialProjects,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getProjects.pending, (state) => {
+        state.status = ProjectStateStatus.loading;
+      })
+      .addCase(getProjects.fulfilled, (state, action) => {
+        state.status = ProjectStateStatus.succeeded;
+        state.projects = action.payload;
+      })
+      .addCase(findProject.rejected, (state) => {
+        state.status = ProjectStateStatus.failed;
+      });
+  },
+});
+
+export const projectsReducer = projectsSlice.reducer;

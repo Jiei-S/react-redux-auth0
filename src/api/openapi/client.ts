@@ -1,13 +1,12 @@
-import { ProjectApi } from "./v1.0/clients/project-api";
-import { Configuration } from "./v1.0/configuration";
+import { Configuration, ProjectApi } from "./gen/v1.0";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_PATH;
+const API_BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
 const baseConfig = new Configuration({
   basePath: API_BASE_URL,
   baseOptions: {
     headers: {
-      workspaceId: "1",
+      version: "1",
     },
   },
 });
