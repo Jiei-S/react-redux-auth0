@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 
 const Logo = (): JSX.Element => {
   const { t } = useTranslation();
-  return <Box>{t("logo")}</Box>;
+  return <Box>{t("header.logo")}</Box>;
 };
 
 export default Logo;

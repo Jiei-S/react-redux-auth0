@@ -9,13 +9,25 @@ import Layout from "./components/_shared/layouts/layout";
 import projectsRouter from "./components/projects/routes";
 import { globalStyle } from "./global";
 import store from "./modules";
+import Login from "./components/login";
+import AuthenticationGuard from "./components/_shared/components/auth/authentication-guard";
+import { PageKey } from "./components/_shared/const/const";
+import Auth0Provider from "./components/_shared/components/auth/authentication-provider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <Auth0Provider>
+        <AuthenticationGuard component={Layout} />
+      </Auth0Provider>
+    ),
     children: [
       ...projectsRouter,
+      {
+        path: PageKey.login,
+        element: <Login />,
+      },
       {
         path: "*",
         loader: async () => {

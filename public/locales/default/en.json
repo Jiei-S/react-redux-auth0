@@ -1,7 +1,9 @@
 {
   "page": {
-    "projects": "Project",
-    "approve-requests": "Approve Request"
+    "projects": "Project"
   },
-  "logo": "Logo"
+  "header": {
+    "logo": "Logo",
+    "logout": "Logout"
+  }
 }

@@ -1,7 +1,9 @@
 {
   "page": {
-    "projects": "案件一覧",
-    "approve-requests": "承認状況"
+    "projects": "プロジェクト"
   },
-  "logo": "ロゴ"
+  "header": {
+    "logo": "ロゴ",
+    "logout": "ログアウト"
+  }
 }

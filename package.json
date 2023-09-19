@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "eslint": "eslint --no-error-on-unmatched-pattern --max-warnings=0 ./src/{components,modules}/**",
+    "prettier": "prettier --write --no-error-on-unmatched-pattern ./src/{components,modules}/**"
   },
   "husky": {
     "hooks": {
@@ -15,9 +18,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,md,json}": [
-      "npx prettier --write --no-error-on-unmatched-pattern src/{components,modules}/**",
-      "npx eslint --no-error-on-unmatched-pattern src/{components,modules}/** --max-warnings=0"
+    "./src/{components,modules}/**/*.{ts,tsx}": [
+      "yarn prettier",
+      "yarn eslint"
     ]
   },
   "dependencies": {

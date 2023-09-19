@@ -3,6 +3,7 @@ import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
+import Logout from "../components/button/logout";
 import Logo from "../components/logo/logo";
 
 const Header = styled("header")({
@@ -34,6 +35,7 @@ const CustomHeader = (): JSX.Element => (
             <Logo />
           </CustomLogoTypography>
         </Link>
+        <Logout />
       </CustomToolbar>
     </CustomAppBar>
   </Header>
