@@ -5,5 +5,5 @@ setup:
 .PHONY: dev
 dev:
 	docker compose down || true
-	docker network create vite || true
+	docker network create react-redux || true
 	docker compose up --build

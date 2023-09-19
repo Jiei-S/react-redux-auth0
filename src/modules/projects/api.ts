@@ -1,12 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { projectApi } from "../../api/openapi/client";
 import { ProjectCreateParams, ProjectResponse } from "../../api/openapi/gen/v1.0";
+import { APIParams, ProjectClient } from "../_shared/config/openapi/config";
 
-export const findProject = createAsyncThunk<ProjectResponse, string>("projects/findProject", async (id) => {
-  return {
-    ...(await projectApi.findProject(id)).data,
-  };
-});
+export const findProject = createAsyncThunk<ProjectResponse, APIParams<string>>(
+  "projects/findProject",
+  async ({ params: id, accessToken }) => {
+    const c = new ProjectClient({ accessToken });
+    return {
+      ...(await c.findProject(id)).data,
+    };
+  }
+);
+
+export const createProject = createAsyncThunk<ProjectResponse, APIParams<ProjectCreateParams>>(
+  "projects/createProject",
+  async ({ params, accessToken }) => {
+    const c = new ProjectClient({ accessToken });
+    return {
+      ...(await c.createProject(params)).data,
+    };
+  }
+);
 
 export const getProjects = createAsyncThunk<ProjectResponse[]>("projects/getProjects", async () => {
   return [
@@ -22,12 +36,3 @@ export const getProjects = createAsyncThunk<ProjectResponse[]>("projects/getProj
     },
   ];
 });
-
-export const createProject = createAsyncThunk<ProjectResponse, ProjectCreateParams>(
-  "projects/createProject",
-  async (params) => {
-    return {
-      ...(await projectApi.createProject(params)).data,
-    };
-  }
-);

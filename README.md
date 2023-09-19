@@ -1,10 +1,12 @@
-# Boilerplate React Redux
+# React Redux
+
+This is a boilerplate for React Redux.
 
 # Technology Stack
 | Category  | Technology Stack |
 | ------------- | ------------- |
 | Programming Languages | TypeScript  |
-| Frameworks  | React, Redux(Redux Toolkit), React Router, MUI |
+| Frameworks  | React, Redux(Redux Toolkit), React Router, MUI, Auth0 |
 | Environment setup  | Vite, Docker |
 | CI | Husky, ESLint, Prettier |
 
