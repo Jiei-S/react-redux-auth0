@@ -1,4 +1,4 @@
-# React Redux
+# React-Redux-Auth0
 
 This is a boilerplate for React Redux.
 
