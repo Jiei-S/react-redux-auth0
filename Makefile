@@ -1,6 +1,7 @@
 .PHONY: setup
 setup:
 	yarn install
+	cp .env .env.local
 
 .PHONY: dev
 dev:
